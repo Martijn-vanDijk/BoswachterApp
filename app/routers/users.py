@@ -22,7 +22,7 @@ router = APIRouter(
 @router.post("/", status_code=201)
 def __post_user(user: CreateUser) -> User:
     with Session(engine) as session:
-        db_users = User.model_validate(user)
+        db_users = Observation.model_validate(user)
         add_to_session(db_users, session)
         return db_users
 
