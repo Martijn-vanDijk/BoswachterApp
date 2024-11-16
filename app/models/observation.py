@@ -60,12 +60,12 @@ class ObservationCreate(ObservationBase):
     species: Species 
     observed_count: int
     gender: Gender | None = None
-    age: Age
+    age: Age | None = None
     health: Health | None = None
     location: str 
     timestamp: int  
     user: str  
-    additional_description: str 
+    additional_description: str | None = None
 
     pass
 
