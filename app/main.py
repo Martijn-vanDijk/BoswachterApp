@@ -13,3 +13,4 @@ def __on_startup():
     all relevant tables are created/updated. This makes development easy.
     """
     create_db_and_tables()
+
