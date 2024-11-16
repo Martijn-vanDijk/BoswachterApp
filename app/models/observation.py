@@ -56,6 +56,17 @@ class ObservationCreate(ObservationBase):
     Model defining the data required to create an Observation. Currently this
     adds nothing to the base class.
     """
+
+    species: Species 
+    observed_count: int
+    gender: Gender | None = None
+    age: Age
+    health: Health | None = None
+    location: str 
+    timestamp: int  
+    user: str  
+    additional_description: str 
+
     pass
 
 class ObservationUpdate(SQLModel):
