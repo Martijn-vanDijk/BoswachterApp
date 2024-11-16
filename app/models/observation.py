@@ -60,12 +60,12 @@ class ObservationCreate(ObservationBase):
     species: Species 
     observed_count: int
     gender: Gender | None = None
-    age: Age
+    age: Age | None = None
     health: Health | None = None
     location: str 
     timestamp: int  
     user: str  
-    additional_description: str 
+    additional_description: str | None = None
 
     pass
 
@@ -84,3 +84,14 @@ class ObservationUpdate(SQLModel):
     timestamp: int  | None = None
     user: str  | None = None
     additional_description: str  | None = None
+
+
+    
+class User(SQLModel, table=True):
+    """
+    This is the table representation for the Observation entity, it includes
+    all fields from the base class and our auto increment ID.
+    """
+    id: int | None = Field(default=None, primary_key=True)
+    user_name : str
+    password : str

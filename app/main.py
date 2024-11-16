@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from app.dependencies.database import create_db_and_tables
 from app.routers import observations
-
+from app.routers import users
 api = FastAPI()
 api.include_router(observations.router)
+api.include_router(users.router)
 
 @api.on_event("startup")
 def __on_startup():
