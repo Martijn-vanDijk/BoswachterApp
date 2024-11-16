@@ -6,3 +6,6 @@ Door `docker-compose up` te draaien in de root van deze repo start je de benodig
 
 ## Gebruik
 De API start op `localhost:8000`. De documentatie van de beschikbare endpoints is te vinden op `http://localhost:8000/docs`. 
+
+
+Hey i made some changes
