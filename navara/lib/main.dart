@@ -54,7 +54,10 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-const List<String> list = <String>['Fallow deer', 'Red deer', 'Roe deer', 'Wild boar', 'Scottish Highlander', 'Wolf'];
+const List<String> species = <String>['Fallow deer', 'Red deer', 'Roe deer', 'Wild boar', 'Scottish Highlander', 'Wolf'];
+const List<String> gender = <String>['Female', 'Male', 'Unknown'];
+const List<String> age = <String>['Young', 'Adolescent', 'Adult', 'Unknown'];
+const List<String> health = <String>['1', '2', '3', '4', '5', 'Unknown'];
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -65,33 +68,181 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text("Animal species: "),
-                DropdownButtonExample()
-              ]
-            )
-          ],
-        ),
+      body: Username()
     );
   }
 }
 
+class Username extends StatefulWidget {
+  @override
+  _UsernameState createState() => _UsernameState();
+}
+
+class _UsernameState extends State<Username> {
+  final myUsernameController = TextEditingController();
+  final myPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myUsernameController.dispose();
+    myPasswordController.dispose();
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const Text("Username: "),
+              SizedBox(
+                height: 40,
+                width: 200,
+                child: TextField(
+                  controller: myUsernameController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter username',
+                  ),
+                ),
+              )
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const Text("Password: "),
+              SizedBox(
+                height: 40,
+                width: 200,
+                child: TextField(
+                  controller: myPasswordController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter password',
+                  ),
+                ),
+              )
+            ]
+          ),
+          TextButton(
+          onPressed: () {
+            print(myPasswordController);
+            print(myUsernameController);
+            //TODO: if matches, then go to another page
+          },
+          child: const Text('Enter'),
+        )
+      ]
+    );
+  }
+}
+
+class Observations extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Animal species: "),
+              DropdownButtonExample(list: species),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Number of animals: "),
+              SizedBox(
+                height: 40,
+                width: 200,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter age',
+                  ),
+                )
+              )  
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Gender: "),
+              DropdownButtonExample(list: gender),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Age: "),
+              DropdownButtonExample(list: age),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Age: "),
+              DropdownButtonExample(list: health),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Location: "),
+              SizedBox(
+                height: 40,
+                width: 300,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter location if known',
+                  ),
+                )
+              )  
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Remarks: "),
+              SizedBox(
+                height: 40,
+                width: 300,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: '',
+                  ),
+                )
+              )  
+            ]
+          ),
+        ]
+      );
+  }
+  
+}
+
 class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
+  final List<String> list;
+  const DropdownButtonExample({super.key, required this.list});
 
   @override
   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
 }
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
+  
 
   @override
   Widget build(BuildContext context) {
+    List<String> list = widget.list;
+    String dropdownValue = list.first;
     return DropdownButton<String>(
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
