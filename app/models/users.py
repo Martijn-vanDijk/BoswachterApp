@@ -7,6 +7,6 @@ class User(SQLModel):
     This is the table representation for the Observation entity, it includes
     all fields from the base class and our auto increment ID.
     """
-    id: int | None = Field(default=None, primary_key=True)
     user_name : str
     password : str
+    id: int | None = Field(default=None, primary_key=True)

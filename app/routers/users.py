@@ -4,6 +4,12 @@ from sqlmodel import select, Session
 from app.dependencies.database import engine, add_to_session
 from typing import Annotated
 
+from fastapi import HTTPException, Query, APIRouter
+from app.models.users import *
+from sqlmodel import select, Session
+from app.dependencies.database import engine, add_to_session
+from typing import Annotated
+
 router = APIRouter(
     prefix="/users",
     tags=["users"],
