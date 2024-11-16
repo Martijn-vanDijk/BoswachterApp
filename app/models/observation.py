@@ -84,3 +84,7 @@ class ObservationUpdate(SQLModel):
     timestamp: int  | None = None
     user: str  | None = None
     additional_description: str  | None = None
+
+class User(SQLModel):
+    username = str,
+    password = str
