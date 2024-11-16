@@ -9,12 +9,15 @@ router = APIRouter(
     tags=["users"],
 )
 
-@router.post("/Register")
-def __make_user(name: str, password :str):
+@router.post("/Register", status_code=201)
+def __make_user(user : CreateUser) -> User:
     with Session(engine) as session:
-        User.user_name = name
-        User.password = password
-        return "Success"
+        db_users = User.model_validate(user)
+        add_to_session(db_users, session)
+        return db_users
+        db_observation = Observation.model_validate(observation)
+        add_to_session(db_observation, session)
+        return db_observation
     
 @router.get("/user")
 def __get_user(name: str, password: str):
