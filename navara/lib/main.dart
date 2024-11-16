@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-from app.routers import observations
-from app.routers import users
+import 'package:app/functions.py';
 
 void main() {
   runApp(const MyApp());
@@ -136,13 +135,13 @@ class _UsernameState extends State<Username> {
           onPressed: () {
             print(myPasswordController);
             print(myUsernameController);
-            //if (myPasswordController == somepyvar && myUsernameController == somepyvar){
+            if (validate_user(myUsernameController.Text, myPasswordController.Text)){
               Navigator.pushReplacementNamed(
                     context,
                     '/observe');
-            //} else {
-            //  print("Password/username incorrect");
-            //}
+            } else {
+             print("Password/username incorrect");
+            }
           },
           child: const Text('Enter'),
         )
